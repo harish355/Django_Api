@@ -55,7 +55,7 @@
 </p>
 <br>
 <h2>Email Verification</h2>
-<h3>http://localhost:8000/verify/email/<Email_Verification_ID>/</h3>
+<h3>http://localhost:8000/verify/email/-Email_Verification_ID-/</h3>
 <h3>Email_verification_id: 65655b76-45f2-4a8b-ac15-b475c3c49c1c/ <h3>
 <h4>
 Simple Request (Get) To url:</h4><h4>
@@ -89,7 +89,7 @@ Response:</h3>
 <br>
 <h2>User Update</h2>
 <h3>
-http://localhost:8000/user/<User.id>/update/</h3><h3>
+http://localhost:8000/user/-User.id-/update/</h3><h3>
 Request (Post) with User Id in url:
 </h3>
 <p>
@@ -121,7 +121,7 @@ Response:</h3>
 User Delete
 </h2>
 <h3>
-http://localhost:8000/user/<user.id>/delete/ </h3><h3>
+http://localhost:8000/user/-user.id-/delete/ </h3><h3>
 Request (Post) with User Id in Url: </h3><h3>
 http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ </h3>
 <p>
