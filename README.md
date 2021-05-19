@@ -30,15 +30,16 @@
 ```yaml
 {
 status": 200,
-"message": "Success",</h4>
+"message": "Success",
 "Session_Id": "0437305416345148",</h4>
 "user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"
 }
 ```
 ## Login user
-### Request<
+### Request
 ```yaml
-{	'email':’email,
+{	
+'email':’email,
 'password':''password'',
 'image':Image_file,
 'latitude': 'latitude',                                             
