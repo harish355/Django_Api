@@ -16,12 +16,13 @@
 'country': 'country',
 'pincode': 'pincode',
 'hint_answer': 'hint_answer',
-'login_country': 'login_country',  <h3>  #login_country Should Be in Country Code (like India be IN) </h3>
+'login_country': 'login_country',  
 'account_number': 'account_number',  
 'email': 'email_id',
 'password': 'password',
 ‘image’:Image-file }
 </p>
+<h3>  #login_country Should Be in Country Code (like India be IN) </h3>
 <h2>Response:</h2>
 <h3>After Successful Registration</h3>
 <h4>{status": 200,</h4>
