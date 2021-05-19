@@ -3,10 +3,11 @@
 ### url: http://localhost:8000/register/ 
 ## Request (Post)</h2>
 ```yaml
-{'username': 'username',
+{
+'username': 'username',
 'firstname': 'firstname',
 'lastname': 'lastname',
- 'year':2001,
+'year':2001,
 'month':3,
 'day':5,       
 'phone':'+919876543210',
@@ -20,31 +21,34 @@
 'account_number': 'account_number',  
 'email': 'email_id',
 'password': 'password',
-‘image’:Image-file }
+‘image’:Image-file 
+}
 ```
 ### login_country Should Be in Country Code (like India be IN) 
 ## Response:
 ### After Successful Registration
 ```yaml
-{status": 200,
+{
+status": 200,
 "message": "Success",</h4>
 "Session_Id": "0437305416345148",</h4>
-"user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"}
+"user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"
+}
 ```
 ## Login user
 ### Request<
 ```yaml
 {	'email':’email,
 'password':''password'',
- 'image':Image_file,
+'image':Image_file,
 'latitude': 'latitude',                                             
 'longitude': 'longitude',
 'Up_letter_array': 'Up_letter_array',
 'Down_letter_array': 'Down_letter_array',
- 'Up_time': 'Up_time',
+'Up_time': 'Up_time',
 'Down_time': 'Down_time',
 'Press_time_array':'Press_time_array',
- 'otp':Otp_sent_to Mobile,
+'otp':Otp_sent_to Mobile,
    }
 ```
 ### Response:
@@ -95,17 +99,17 @@
 {	'username':'h',
 'firstname':'Harish',
 'lastname':'Kumar',
-         'year':2001,'month':3,'day':5,
-          'phone':'+916383029824',
+'year':2001,'month':3,'day':5,
+'phone':'+916383029824',
 'street':'velliyanai',
 'locality':'main Road',
 'city':'kaur',
-'country':      'india',
+'country': 'india',
 'pincode':'639118',
 'hint_answer':'hk',
 'login_country':'india',
-         'account_number':'13111222233334444',
-         'session_id':'9538215068336738'
+'account_number':'13111222233334444',
+'session_id':'9538215068336738'
 }
 ```
 ### Response:
