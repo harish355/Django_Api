@@ -1,4 +1,4 @@
-# Django_Api
+# Fraudify Django
 # Register  user</h1>
 ### url: http://localhost:8000/register/ 
 ## Request (Post)</h2>
