@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TWILIO_ACCOUNT_SID = 'AC2fe3875ab72fc14938a518275e201490'
-TWILIO_AUTH_TOKEN = '0b313150102665d44aa663fea126b533'
+TWILIO_AUTH_TOKEN = '2555d95ee0840ce9dd58f519dea67238'
 TWILIO_FROM = '+14159663492'
 
 # Quick-start development settings - unsuitable for production

@@ -60,7 +60,10 @@ def Update(request,id):
                     otp=otp,
                     user=user
                     )
-                    sendVerificationMessage(user.profile.phone, otp) # Check the Twillo Account
+                    try:
+                        sendVerificationMessage(user.profile.phone, otp) # Check the Twillo Account
+                    except:
+                        print("OTP Verifcation UnSucessful")
                     profile.save()
                     return JsonResponse(data={'status':200,'messages':"Updation Success "})
                 else:

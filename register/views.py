@@ -94,7 +94,10 @@ def index(request):
             )       
             email.save()
 
-            sendVerificationEmail(email)
+            try:
+                sendVerificationEmail(email)
+            except:
+                print("Sending Email UnSucessful")
             
             otp = generateOtp(6)
             PhoneVerification.objects.create(
@@ -108,7 +111,10 @@ def index(request):
             Session=Sessions(user=user)
             Session.save()
 
-            sendVerificationMessage(phone,otp)
+            try:
+                sendVerificationMessage(phone,otp)
+            except:
+                print("OTP Verifcation UnSucessful")
             
             return JsonResponse(data={'status':200,'message':'Success',
             'Session_Id':str(Session.Session_Id),'user_id':str(user.id)

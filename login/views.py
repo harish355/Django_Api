@@ -74,7 +74,7 @@ def Login(request):
         print()
         # Image
         try:
-            if(flag==0)
+            if(flag==0):
                 try:
                     _, image_extension = os.path.splitext(image.name)
                     print("Image Extension: ",image_extension,os.path.join(settings.MEDIA_ROOT, 'verify/'))
@@ -141,7 +141,10 @@ def Login(request):
                 phone_verification.otp=otp_final
                 phone_verification.save()
 
-                sendVerificationMessage(user.profile.phone, otp)    # Check Twillo Account 
+                try:
+                    sendVerificationMessage(user.profile.phone, otp)    # Check Twillo Account 
+                except:
+                    print("OTP Verifcation UnSucessful")
 
                 return JsonResponse(data={'status':300,'flag': flag})
         except Exception as e:
