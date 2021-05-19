@@ -1,8 +1,8 @@
 # Django_Api
-<h1>Register  user</h1>
-<h3>url: http://localhost:8000/register/ </h3>
-<h2>Request (Post)</h2>
-<p>
+# Register  user</h1>
+### url: http://localhost:8000/register/ 
+## Request (Post)</h2>
+```yaml
 {'username': 'username',
 'firstname': 'firstname',
 'lastname': 'lastname',
@@ -21,17 +21,19 @@
 'email': 'email_id',
 'password': 'password',
 ‘image’:Image-file }
-</p>
-<h3>  #login_country Should Be in Country Code (like India be IN) </h3>
-<h2>Response:</h2>
-<h3>After Successful Registration</h3>
-<h4>{status": 200,</h4>
-<h4>"message": "Success",</h4>
-<h4>"Session_Id": "0437305416345148",</h4>
-<h4>"user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"}</h4>
-<h2>Login user<h2>
-<h3>Request</h3>
-<p>
+```
+### login_country Should Be in Country Code (like India be IN) 
+## Response:
+### After Successful Registration
+```yaml
+{status": 200,
+"message": "Success",</h4>
+"Session_Id": "0437305416345148",</h4>
+"user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"}
+```
+## Login user
+### Request<
+```yaml
 {	'email':’email,
 'password':''password'',
  'image':Image_file,
@@ -44,55 +46,52 @@
 'Press_time_array':'Press_time_array',
  'otp':Otp_sent_to Mobile,
    }
-</p>
-<h3>Response:</h3>
-<p>
+```
+### Response:
+```yaml
 {
     "status": 200,
     "Message": "Login Success",
     "Session_Id": "0437305416345148"
 }
-</p>
-<br>
-<h2>Email Verification</h2>
-<h3>http://localhost:8000/verify/email/-Email_Verification_ID-/</h3>
-<h3>Email_verification_id: 65655b76-45f2-4a8b-ac15-b475c3c49c1c/ <h3>
-<h4>
-Simple Request (Get) To url:</h4><h4>
-http://localhost:8000/verify/email/65655b76-45f2-4a8b-ac15-b475c3c49c1c/
-</h4>
-<h3>Response:</h3>
-<p>
+```
+
+## Email Verification
+#### http://localhost:8000/verify/email/-Email_Verification_ID-/
+### Email_verification_id: 65655b76-45f2-4a8b-ac15-b475c3c49c1c/ 
+
+### Simple Request (Get) To url:
+#### http://localhost:8000/verify/email/65655b76-45f2-4a8b-ac15-b475c3c49c1c/
+
+### Response:
+```yaml
 {
     "status": 200,
     "message": "Email has been verified."
 }
-</p>
-<br>
-<h2>Phone Verification</h2>
-<h3>http://localhost:8000/verify/phone/</h3>
-<h3>Request (Post) with Session_id and OTP sent to Phone:</h3>
-<p>
+```
+
+## Phone Verification
+#### http://localhost:8000/verify/phone/
+### Request (Post) with Session_id and OTP sent to Phone:
+```yaml
 {'id':Session_Id,
 'otp':OTP_Sent
 }
-</p>
-<h3>
-Response:</h3>
-<p>
+```
+
+### Response:
+```yaml
 {
     "status": 200,
     "messages": "Phone Verification Sucess"
 }
-</p>
+```
 
-<br>
-<h2>User Update</h2>
-<h3>
-http://localhost:8000/user/-User.id-/update/</h3><h3>
-Request (Post) with User Id in url:
-</h3>
-<p>
+## User Update
+#### http://localhost:8000/user/-User.id-/update/
+### Request (Post) with User Id in url:
+```yaml
 {	'username':'h',
 'firstname':'Harish',
 'lastname':'Kumar',
@@ -108,33 +107,28 @@ Request (Post) with User Id in url:
          'account_number':'13111222233334444',
          'session_id':'9538215068336738'
 }
-</p>
-<h3>
-Response:</h3>
-<p>
+```
+### Response:
+```yaml
 {
     "status": 200,
     "messages": "Updation Success"
 }
-</p>
-<h2>
-User Delete
-</h2>
-<h3>
-http://localhost:8000/user/-user.id-/delete/ </h3><h3>
-Request (Post) with User Id in Url: </h3><h3>
-http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ </h3>
-<p>
+```
+## User Delete
+#### http://localhost:8000/user/-user.id-/delete/ 
+### Request (Post) with User Id in Url: 
+#### http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ 
+```yaml
 {
 'session_id':Session_id
 }
-</p>
-<h3>
-Response: </h3>
-<p>
+```
+### Response: 
+```yaml
 {
     "status": 200,
     "messages": "User Account Deleted Sucessfully"
 }
-</p>
+```
 
