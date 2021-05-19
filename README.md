@@ -50,7 +50,7 @@ status": 200,
 'Down_time': 'Down_time',
 'Press_time_array':'Press_time_array',
 'otp':Otp_sent_to Mobile,
-   }
+}
 ```
 ### Response:
 ```yaml
@@ -80,8 +80,9 @@ status": 200,
 #### http://localhost:8000/verify/phone/
 ### Request (Post) with Session_id and OTP sent to Phone:
 ```yaml
-{'id':Session_Id,
-'otp':OTP_Sent
+{
+   'id':Session_Id,
+   'otp':OTP_Sent
 }
 ```
 
@@ -97,7 +98,8 @@ status": 200,
 #### http://localhost:8000/user/-User.id-/update/
 ### Request (Post) with User Id in url:
 ```yaml
-{	'username':'h',
+{	
+'username':'h',
 'firstname':'Harish',
 'lastname':'Kumar',
 'year':2001,'month':3,'day':5,
@@ -126,7 +128,7 @@ status": 200,
 #### http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ 
 ```yaml
 {
-'session_id':Session_id
+   'session_id':Session_id
 }
 ```
 ### Response: 
