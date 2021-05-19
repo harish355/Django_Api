@@ -60,7 +60,7 @@ def Update(request,id):
                     otp=otp,
                     user=user
                     )
-                    #sendVerificationMessage(user.profile.phone, otp) //////////////////////////////////////////////////////////////
+                    sendVerificationMessage(user.profile.phone, otp) # Check the Twillo Account
                     profile.save()
                     return JsonResponse(data={'status':200,'messages':"Updation Success "})
                 else:

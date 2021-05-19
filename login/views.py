@@ -15,6 +15,7 @@ from django.conf import settings
 @api_view(["POST", "GET"])
 def Login(request):
     if(request.method=='POST'):
+        flag=0
         try:
             data=request.data
             email=data['email']
@@ -24,13 +25,17 @@ def Login(request):
             try:
                 image=data['image']
             except:
-                return JsonResponse(data={'status':400,'messages':"Image Data Not provided"})
+                flag=1
+                print("Image Data Not Provided")
             print(3)
             try:
                 latitude=float(data['latitude'])
                 longitude=float(data['longitude'])
+                location_provided=True
             except:
-                return JsonResponse(data={'status':400,'messages':"Invaid Latitude/Longitude data provided"})
+                location_provided=False
+                if(flag==1):
+                    flag=2
             print(5)
             Up_letter_array=data['Up_letter_array']
             print(6)
@@ -69,24 +74,27 @@ def Login(request):
         print()
         # Image
         try:
-            flag = 0
-            try:
-                _, image_extension = os.path.splitext(image.name)
-                print("Image Extension: ",image_extension,os.path.join(settings.MEDIA_ROOT, 'verify/'))
-                image_name = default_storage.save(os.path.join(settings.MEDIA_ROOT, 'verify/'), image)
-                print("Image Name: ",image_name)    
-                image_path = image_name + image_extension
-                print("Image Path: ",image_path)
-                os.rename(image_name, image_path)
-                print(image_name, image_path)
-                if compareImage(image_path, user.profile.image):
-                    flag = 1
-                os.remove(image_path)
-                print("____________________________image Verification Success__________________")
-            except Exception as e:
-                return JsonResponse(data={'status':400,'messages':"Image Verfication Failed"})
-                print("Error at Image Verification ",e)
-                pass
+            if(flag==0)
+                try:
+                    _, image_extension = os.path.splitext(image.name)
+                    print("Image Extension: ",image_extension,os.path.join(settings.MEDIA_ROOT, 'verify/'))
+                    image_name = default_storage.save(os.path.join(settings.MEDIA_ROOT, 'verify/'), image)
+                    print("Image Name: ",image_name)    
+                    image_path = image_name + image_extension
+                    print("Image Path: ",image_path)
+                    os.rename(image_name, image_path)
+                    print(image_name, image_path)
+                    if compareImage(image_path, user.profile.image):
+                        if(location_provided):
+                            flag=1
+                        else:
+                            flag=2
+                    os.remove(image_path)
+                    print("____________________________image Verification Success__________________")
+                except Exception as e:
+                    return JsonResponse(data={'status':400,'messages':"Image Verfication Failed"})
+                    print("Error at Image Verification ",e)
+                    pass
             print()
             if flag == 1:
                 try:
@@ -133,7 +141,7 @@ def Login(request):
                 phone_verification.otp=otp_final
                 phone_verification.save()
 
-                #sendVerificationMessage(user.profile.phone, otp) ///////////////////////////////////////////////////////////////////
+                sendVerificationMessage(user.profile.phone, otp)    # Check Twillo Account 
 
                 return JsonResponse(data={'status':300,'flag': flag})
         except Exception as e:
