@@ -121,7 +121,7 @@ Response:</h3>
 User Delete
 </h2>
 <h3>
-http://localhost:8000/user/<User.id>/delete/ </h3><h3>
+http://localhost:8000/user/<user.id>/delete/ </h3><h3>
 Request (Post) with User Id in Url: </h3><h3>
 http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ </h3>
 <p>
