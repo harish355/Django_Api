@@ -25,6 +25,17 @@ TWILIO_FROM = '+14159663492'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's2o!ol_8r+4$5cf&kz1)+yv5j@qk#7*l7k4z4eovctca2p)2d6'
 
+
+#Have to add credential in it 
+EMAIL_USE_TLS = ''
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = ''
+
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
