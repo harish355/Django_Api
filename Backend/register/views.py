@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 import datetime
 from .models import HintQuestions,UserProfile,User,EmailVerification,PhoneVerification
-from login.models import LoginVerification,Sessions
+from login.models import LoginVerification
 from .helper import generateUUID,generateOtp
 from .emails import sendVerificationEmail
 from .phone import sendVerificationMessage
@@ -53,6 +53,7 @@ def index(request):
                 return JsonResponse(data={'status':300,'messages':"image Data Not Provided"})
             print(15)
             email=data['email']
+            email_address=email
             match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
             if(match==None):
                 return JsonResponse(data={'status':300,'messages':"Provide a Valid Email Address"})
@@ -95,9 +96,9 @@ def index(request):
             email.save()
 
             try:
-                sendVerificationEmail(email)
-            except:
-                print("Sending Email UnSucessful")
+                sendVerificationEmail(email_address)
+            except Exception as e:
+                print(e)
             
             otp = generateOtp(6)
             PhoneVerification.objects.create(
@@ -108,16 +109,16 @@ def index(request):
                 otp=otp,
                 user=user,
             )
-            Session=Sessions(user=user)
-            Session.save()
+
 
             try:
                 sendVerificationMessage(phone,otp)
+                print("OTP Verifcation Sucess")
             except:
                 print("OTP Verifcation UnSucessful")
             
             return JsonResponse(data={'status':200,'message':'Success',
-            'Session_Id':str(Session.Session_Id),'user_id':str(user.id)
+            'user_id':str(user.id)
             })
         except Exception as e:
              print(e)

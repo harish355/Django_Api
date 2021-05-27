@@ -6,8 +6,7 @@ from django.template import loader
 
 from register.models import EmailVerification, User
 
-EMAIL_HOST_USER = ''#settings.EMAIL_HOST_USER
-DOMAIN_NAME = ''#settings.DOMAIN_NAME
+
 
 # Send email for verification at the time of registration
 def sendVerificationEmail(email):
@@ -18,12 +17,13 @@ def sendVerificationEmail(email):
     to_list = [email]
     try:
         html_message = loader.render_to_string(
-            template_name='users/verificationEmail.html', 
+            template_name='/templates/users/verificationEmail.html', 
             context={
                 'username': user.profile.username,
                 'domain': DOMAIN_NAME,
                 'id': email_verification.id
             })
+        print("_-----Html Template Ready___________")
         send_mail(
             'Email verification',
             '',
@@ -32,7 +32,8 @@ def sendVerificationEmail(email):
             fail_silently=False,
             html_message=html_message
         )
-    except:
+    except Exception as e:
+        print("___________________",e)
         print(f"Email (type=verification) couldn't be sent to {email}.")
 
 # Send email on every update made to user profile

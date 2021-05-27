@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TWILIO_ACCOUNT_SID = 'AC2fe3875ab72fc14938a518275e201490'
-TWILIO_AUTH_TOKEN = '2555d95ee0840ce9dd58f519dea67238'
+TWILIO_AUTH_TOKEN = '9d76b69f1de995354babd03f4ae6d1e4'
 TWILIO_FROM = '+14159663492'
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +28,20 @@ SECRET_KEY = 's2o!ol_8r+4$5cf&kz1)+yv5j@qk#7*l7k4z4eovctca2p)2d6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','0.0.0.0','haran-ubuntu','192.168.0.107','test-haran.ddns.net']
+ALLOWED_HOSTS = ['*']
+
+
+EMAIL_HOST='smtp.gmail.com'
+DOMAIN_NAME=""
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='helloanonymous555@gmail.com'
+EMAIL_HOST_PASSWORD='hellopassword555'
+EMAIL_PORT=587
+FRAUDIFY_EMAIL_PORT=587
+
+
+
+
 
 
 # Application definition
@@ -79,12 +92,21 @@ WSGI_APPLICATION = 'Api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+DATABASES= {'default': 
+    {'ENGINE': 'djongo', 
+    'NAME': 'fraudify_api', 
+    'CLIENT': {
+        'host': 'mongodb+srv://fraudify:90Vi4nCbQtHE2u02@dashboard.c2xam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+        }
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -130,3 +152,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_URL = 'users:login'
 LOGOUT_URL = 'users:logout'
+

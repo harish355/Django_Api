@@ -8,7 +8,7 @@ from login.models import LoginVerification,Sessions
 from register.helper import generateUUID,generateOtp
 from register.emails import sendVerificationEmail
 from register.phone import sendVerificationMessage
-
+import os
 
 @api_view(["POST", "GET"])
 def Update(request,id):
@@ -25,7 +25,6 @@ def Update(request,id):
                 city=data['city']
                 country=data['country']
                 pincode=data['pincode']
-                session=data['session_id']
                 hint_question=HintQuestions.objects.get(id='c38b9f9f-aa55-400d-9df0-587400dd652f')
                 hint_answer=data['hint_answer']
                 login_country=data['login_country']
@@ -36,8 +35,6 @@ def Update(request,id):
                     return JsonResponse(data={'status':300,'messages':"image Data Not Provided"})
             except:
                 return JsonResponse(data={'status':400,'messages':"Invalid Data Provided"})
-            if(is_active(session)==False):
-                return JsonResponse(data={"status":400, "message":"Session Expired retry logging in"})
             try:
                 user=User.objects.get(id=id)
                 profile=user.profile
@@ -79,33 +76,9 @@ def Update(request,id):
     else:
         return JsonResponse(data={"status":400, "message":"Only Get Request Accepted"})
 
-def is_active(id):
-    try:
-        Session=Sessions.objects.get(Session_Id=id)
-        time_now=datetime.now()+timedelta(days=1,seconds=1)  
-        time_now=pytz.utc.localize(time_now)  
-        print(time_now,Session.time)
-        if(Session.time<time_now):
-            try:
-                Session.time=datetime.now()
-                Session.save()
-                return True
-            except:
-                print("Server Error Can't Update expiry time")
-                return True
-        else:
-            return False
-    except Exception as e:
-        print(e)
-        return False
-
 @api_view(["POST", "GET"])
 def Delete(request,id):
-    if(request.method=="POST"):
-            data=request.data
-            session=data['session_id']
-            if(is_active(session)==False):
-                return JsonResponse(data={"status":400, "message":"Session Expired retry logging in"})
+    if(request.method=="POST" or request.method=='GET'):
             try:
                 user=User.objects.get(id=id)
             except:
@@ -119,15 +92,15 @@ def Delete(request,id):
             except:
                 pass
             try:
-                Sessions.objects.filter(user=user).delete()
-            except:
-                pass
-            try:
                 LoginVerification.objects.filter(user=user).delete()
             except:
                 pass
             try:
                 profile=user.profile
+                if profile.image:
+                    print(profile.image.path)
+                    if os.path.isfile(profile.image.path):
+                        os.remove(profile.image.path)
                 user.delete()
                 profile.delete()
             except Exception as e:
@@ -136,4 +109,4 @@ def Delete(request,id):
             
             return JsonResponse(data={'status':200,'messages':"User Account Deleted Sucessfully"})
     else:
-        return JsonResponse(data={'status':400,'messages':"Only Post Request Accepted"})
+        return JsonResponse(data={'status':400,'messages':"Only Get/Post Request Accepted"})

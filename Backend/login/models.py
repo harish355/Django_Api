@@ -45,10 +45,12 @@ def time():
     time_now=datetime.now()
     session_time=time_now+timedelta(seconds=86400)
     return session_time
+def time_now():
+    return datetime.now()
 
 class Sessions(models.Model):
       Session_Id=models.CharField(max_length=33,primary_key=True,unique=True,default=RandomSesssionKey)
-      time=models.DateTimeField(default=datetime.now())#auto_now_add=True)
+      time=models.DateTimeField(default=time_now)#auto_now_add=True)
       user=models.ForeignKey(User, on_delete=models.PROTECT)
 
       def __str__(self):

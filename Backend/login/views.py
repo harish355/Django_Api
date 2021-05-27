@@ -5,13 +5,11 @@ from register.models import HintQuestions,UserProfile,User,EmailVerification,Pho
 from login.models import LoginVerification
 from .helper import generateUUID,generateOtp,getLocation
 from .phone import sendVerificationMessage
-from .models import Sessions
 from .compare_images import compareImage
 import os
 from django.core.files.storage import default_storage
 from django.conf import settings
-
-
+from django.core.files.base import ContentFile
 @api_view(["POST", "GET"])
 def Login(request):
     if(request.method=='POST'):
@@ -92,9 +90,9 @@ def Login(request):
                     os.remove(image_path)
                     print("____________________________image Verification Success__________________")
                 except Exception as e:
-                    return JsonResponse(data={'status':400,'messages':"Image Verfication Failed"})
                     print("Error at Image Verification ",e)
-                    pass
+                    return JsonResponse(data={'status':400,'messages':"Image Verfication Failed"})
+                    
             print()
             if flag == 1:
                 try:
@@ -105,23 +103,12 @@ def Login(request):
                         flag = 2
                 except:
                     print("_______________________Location verification Failed")
+                    return JsonResponse(data={'status':400,'messages':"Location Verfication Failed"})
             if flag == 2:
-                try:
-                    Session=Sessions.objects.filter(user=user).latest('time')
-                    Session.time=datetime.now()
-                    Session.save()
-                except Exception as e:
-                    print(e)
-                    try:
-                        _=Sessions.objects.filter(user=user).delete()
-                        Session=Sessions(user=user)
-                        Session.save()
-                    except Exception as e:
-                        print(e)
                 return JsonResponse(data={
                     'status': 200,
                     'Message':'Login Success',
-                    'Session_Id': Session.Session_Id
+                    'user_id':str(user.id)
                 })
             else:
                     # Delete existing otp details

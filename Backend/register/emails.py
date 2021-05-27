@@ -4,24 +4,23 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template import loader
 
-from .models import EmailVerification, User
+from register.models import EmailVerification, User
 
-EMAIL_HOST_USER = ''#settings.EMAIL_HOST_USER
-DOMAIN_NAME = ''#settings.DOMAIN_NAME
+
 
 # Send email for verification at the time of registration
 def sendVerificationEmail(email):
     user = User.objects.get(email=email)
     email_verification = EmailVerification.objects.get(user=user)
-    from_email = EMAIL_HOST_USER
+    from_email = settings.EMAIL_HOST_USER
     # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
-        html_message = loader.render_to_string(
-            template_name='users/verificationEmail.html', 
+        html_message =  loader.render_to_string(
+            template_name='templates/verificationEmail.html', 
             context={
                 'username': user.profile.username,
-                'domain': DOMAIN_NAME,
+                'domain': settings.DOMAIN_NAME,
                 'id': email_verification.id
             })
         send_mail(
@@ -30,9 +29,10 @@ def sendVerificationEmail(email):
             from_email,
             to_list,
             fail_silently=False,
-            html_message=html_message
+            # html_message=html_message
         )
-    except:
+    except Exception as e:
+        print("___________________",e)
         print(f"Email (type=verification) couldn't be sent to {email}.")
 
 # Send email on every update made to user profile
