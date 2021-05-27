@@ -50,7 +50,8 @@ def index(request):
             try:
                 img=data['image']
             except:
-                return JsonResponse(data={'status':300,'messages':"image Data Not Provided"})
+                img=""
+                #return JsonResponse(data={'status':300,'messages':"image Data Not Provided"})
             print(15)
             email=data['email']
             email_address=email
