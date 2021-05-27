@@ -31,7 +31,7 @@
 {
 status": 200,
 "message": "Success",
-"user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"
+"user_id": "User_Id"
 }
 ```
 ## Login user
@@ -77,7 +77,7 @@ status": 200,
 
 ## Phone Verification
 #### http://localhost:8000/verify/phone/
-### Request (Post) with Session_id and OTP sent to Phone:
+### Request (Post) with User_id and OTP sent to Phone:
 ```yaml
 {
    'id':User_Id,
