@@ -31,7 +31,6 @@
 {
 status": 200,
 "message": "Success",
-"Session_Id": "0437305416345148",</h4>
 "user_id": "0c010a64-050e-4af3-aeef-7d7d163c81bb"
 }
 ```
@@ -57,7 +56,7 @@ status": 200,
 {
     "status": 200,
     "Message": "Login Success",
-    "Session_Id": "0437305416345148"
+    "user_id": User_Id,
 }
 ```
 
@@ -81,7 +80,7 @@ status": 200,
 ### Request (Post) with Session_id and OTP sent to Phone:
 ```yaml
 {
-   'id':Session_Id,
+   'id':User_Id,
    'otp':OTP_Sent
 }
 ```
@@ -112,7 +111,6 @@ status": 200,
 'hint_answer':'hk',
 'login_country':'india',
 'account_number':'13111222233334444',
-'session_id':'9538215068336738'
 }
 ```
 ### Response:
@@ -124,13 +122,9 @@ status": 200,
 ```
 ## User Delete
 #### http://localhost:8000/user/-user.id-/delete/ 
-### Request (Post) with User Id in Url: 
+### Request (GET/POST) with User Id in Url: 
 #### http://localhost:8000/user/0c010a64-050e-4af3-aeef-7d7d163c81bb/delete/ 
-```yaml
-{
-   'session_id':Session_id
-}
-```
+
 ### Response: 
 ```yaml
 {
