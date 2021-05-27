@@ -3,34 +3,22 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template import loader
-
 from register.models import EmailVerification, User
-
-
 
 # Send email for verification at the time of registration
 def sendVerificationEmail(email):
     user = User.objects.get(email=email)
     email_verification = EmailVerification.objects.get(user=user)
-    from_email = EMAIL_HOST_USER
+    from_email = settings.EMAIL_HOST_USER
     # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
-        html_message = loader.render_to_string(
-            template_name='/templates/users/verificationEmail.html', 
-            context={
-                'username': user.profile.username,
-                'domain': DOMAIN_NAME,
-                'id': email_verification.id
-            })
-        print("_-----Html Template Ready___________")
         send_mail(
             'Email verification',
-            '',
+            'Email Varification Link : '+str(settings.DOMAIN_NAME)+'verify/email/'+str(email_verification.id),
             from_email,
             to_list,
             fail_silently=False,
-            html_message=html_message
         )
     except Exception as e:
         print("___________________",e)
@@ -43,18 +31,13 @@ def sendUpdateEmail(email):
     # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
-        html_message = loader.render_to_string(
-            template_name='users/updateEmail.html', 
-            context={
-                'username': user.profile.username,
-            })
+
         send_mail(
-            'User details updated',
-            '',
+            'Email verification',
+            'User Updation for '+str(user.Username),
             from_email,
             to_list,
             fail_silently=False,
-            html_message=html_message
         )
     except:
         print(f"Email (type=update) couldn't be sent to {email}.")
@@ -65,18 +48,12 @@ def sendDestroyEmail(email, username):
     # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
-        html_message = loader.render_to_string(
-            template_name='users/deleteEmail.html', 
-            context={
-                'username': username,
-            })
         send_mail(
-            'Account deleted',
-            '',
+            'Email verification',
+            'Account Deleted Sucessfully ',
             from_email,
             to_list,
             fail_silently=False,
-            html_message=html_message
         )
     except:
         print(f"Email (type=destory) couldn't be sent to {email}.")

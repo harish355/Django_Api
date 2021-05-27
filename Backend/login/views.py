@@ -26,14 +26,8 @@ def Login(request):
                 flag=1
                 print("Image Data Not Provided")
             print(3)
-            try:
-                latitude=float(data['latitude'])
-                longitude=float(data['longitude'])
-                location_provided=True
-            except:
-                location_provided=False
-                if(flag==1):
-                    flag=2
+            latitude=float(data['latitude'])
+            longitude=float(data['longitude'])
             print(5)
             Up_letter_array=data['Up_letter_array']
             print(6)
@@ -68,6 +62,7 @@ def Login(request):
                     print(str(e))
                     return JsonResponse(data={'status':300,'messages':"OTP verification Failed"})
         except:
+            
             print("_______________________OTP is not Provided______________________")
         print()
         # Image
@@ -83,15 +78,11 @@ def Login(request):
                     os.rename(image_name, image_path)
                     print(image_name, image_path)
                     if compareImage(image_path, user.profile.image):
-                        if(location_provided):
                             flag=1
-                        else:
-                            flag=2
+                            print("____________________________image Verification Success__________________")
                     os.remove(image_path)
-                    print("____________________________image Verification Success__________________")
                 except Exception as e:
                     print("Error at Image Verification ",e)
-                    return JsonResponse(data={'status':400,'messages':"Image Verfication Failed"})
                     
             print()
             if flag == 1:
@@ -103,7 +94,7 @@ def Login(request):
                         flag = 2
                 except:
                     print("_______________________Location verification Failed")
-                    return JsonResponse(data={'status':400,'messages':"Location Verfication Failed"})
+                    
             if flag == 2:
                 return JsonResponse(data={
                     'status': 200,
@@ -115,12 +106,14 @@ def Login(request):
                 LoginVerification.objects.filter(user=user).delete()
                     # Send otp on phone for red and yellow flag
                 if flag == 1:
-                    otp = generateOtp(8)
+                    print("____Flag :1 Sending New OTP")
+                    otp_final = generateOtp(8)
                     Login_Verification = LoginVerification.objects.create(
-                        otp=otp, user=user)
+                        otp=otp_final, user=user)
                 else:
                         # Otp for red flag = otp sent (4 digits) + last 4 digits of account number
                     otp = generateOtp(4)
+                    print("____Flag :0 Sending New OTP")
                     otp_final = otp + user.profile.account_number[-4:]
                     Login_Verification = LoginVerification.objects.create(
                         otp=otp_final, user=user)
@@ -129,7 +122,7 @@ def Login(request):
                 phone_verification.save()
 
                 try:
-                    sendVerificationMessage(user.profile.phone, otp)    # Check Twillo Account 
+                    sendVerificationMessage(user.profile.phone, otp)    
                 except:
                     print("OTP Verifcation UnSucessful")
 

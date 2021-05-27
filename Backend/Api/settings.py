@@ -16,25 +16,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TWILIO_ACCOUNT_SID = 'AC2fe3875ab72fc14938a518275e201490'
-TWILIO_AUTH_TOKEN = '9d76b69f1de995354babd03f4ae6d1e4'
+TWILIO_AUTH_TOKEN = '66d2c42d603d4a707e86ada8f4cc779b'
 TWILIO_FROM = '+14159663492'
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's2o!ol_8r+4$5cf&kz1)+yv5j@qk#7*l7k4z4eovctca2p)2d6'
-
-
-#Have to add credential in it 
-EMAIL_USE_TLS = ''
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = ''
-
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,18 +30,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-EMAIL_HOST='smtp.gmail.com'
-DOMAIN_NAME=""
+EMAIL_HOST="mail.fintract.co.uk"
+DOMAIN_NAME="http://fraudifyapi.londonscg.org/"
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='helloanonymous555@gmail.com'
-EMAIL_HOST_PASSWORD='hellopassword555'
+EMAIL_HOST_USER='testotp@fintract.co.uk'
+EMAIL_HOST_PASSWORD='IDhyYt96rse456c'
 EMAIL_PORT=587
 FRAUDIFY_EMAIL_PORT=587
-
-
-
-
-
 
 # Application definition
 
