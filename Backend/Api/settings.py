@@ -62,6 +62,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = DEBUG
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
+
+if CORS_ORIGIN_ALLOW_ALL:
+    INSTALLED_APPS += ['corsheaders', ]
+    MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware', ]
+
 ROOT_URLCONF = 'Api.urls'
 
 TEMPLATES = [
