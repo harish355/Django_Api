@@ -15,14 +15,14 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-TWILIO_ACCOUNT_SID = 'AC2fe3875ab72fc14938a518275e201490'
-TWILIO_AUTH_TOKEN = '66d2c42d603d4a707e86ada8f4cc779b'
-TWILIO_FROM = '+14159663492'
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = ''
+TWILIO_FROM = ''
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's2o!ol_8r+4$5cf&kz1)+yv5j@qk#7*l7k4z4eovctca2p)2d6'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,11 +30,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-EMAIL_HOST="mail.fintract.co.uk"
+EMAIL_HOST=""
 DOMAIN_NAME="http://fraudifyapi.londonscg.org/"
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='testotp@fintract.co.uk'
-EMAIL_HOST_PASSWORD='IDhyYt96rse456c'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''
 EMAIL_PORT=587
 FRAUDIFY_EMAIL_PORT=587
 
@@ -90,7 +90,7 @@ DATABASES= {'default':
     {'ENGINE': 'djongo', 
     'NAME': 'fraudify_api', 
     'CLIENT': {
-        'host': 'mongodb+srv://fraudify:90Vi4nCbQtHE2u02@dashboard.c2xam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+        'host': ''
         }
     }
 }
