@@ -1,4 +1,10 @@
 # Fraudify Django
+##how to install
+### cmd  >env\Scripts\ativate
+### cmd  >pip install -r requirements.txt
+### cmd  > cd Backend
+###      >python manage.py migrate
+###      >python manage.py runserver
 # Register  user</h1>
 ### url: http://localhost:8000/register/ 
 ## Request (Post)</h2>
