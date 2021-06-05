@@ -13,9 +13,7 @@
 'username': 'username',
 'firstname': 'firstname',
 'lastname': 'lastname',
-'year':2001,
-'month':3,
-'day':5,       
+'date':'2001-1-1',       
 'phone':'+919876543210',
 'street': 'street',
 'locality': 'locality',
@@ -138,4 +136,33 @@ status": 200,
     "messages": "User Account Deleted Sucessfully"
 }
 ```
+
+## Login Reports
+#### http://127.0.0.1:8000/report/log_reports/
+### Request (GET/POST):
+
+### Response
+```yaml
+{"status": 200, "messages": {"green": [["email@gmail.com", "2021-06-04T04:51:36.973Z"]], "blue": [["email@gmail.com", "2021-06-05T18:39:49.821Z"]], "yellow": [], "red": [["email@gmail.com", "2021-06-04T04:47:53.821Z"]]}}
+```
+
+## Logged in Users
+#### http://127.0.0.1:8000/report/loggedin/
+### Request (GET/POST):
+
+### Response
+```yaml
+{"status": 200, "messages": {"logged_user": [["email@gmail.com", "2021-06-04T04:51:36.973Z"]]}}
+```
+
+## Registred User
+#### http://127.0.0.1:8000/report/users/
+### Request (GET/POST):
+
+### Response
+```yaml
+{"status": 200, "messages": {"users": ["email1@gmail.com", "email2@gmail.com"], "number": 2}}
+```
+
+
 
