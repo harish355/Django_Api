@@ -22,4 +22,5 @@ urlpatterns = [
     path('verify/'  , include('verify.urls')),
     path('login/'  , include('login.urls')),
     path('user/',include('user.urls')),
+    path('report/',include('report.urls')),
 ]

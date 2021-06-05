@@ -18,7 +18,12 @@ def index(request):
     if(request.method=='POST'):
         try:
             data=request.data
-            d=datetime.date(int(data['year']),int(data['month']),int(data['day']))
+            dob=data['date']
+            dob=str(dob).split('-')
+            day=int(dob[2])
+            month=int(dob[1])
+            year=int(dob[0])
+            d=datetime.date(year,month,day)
             username=data['username']
             print(1)
             firstname=data['firstname']
@@ -51,7 +56,6 @@ def index(request):
                 img=data['image']
             except:
                 img=""
-                #return JsonResponse(data={'status':300,'messages':"image Data Not Provided"})
             print(15)
             email=data['email']
             email_address=email

@@ -3,7 +3,7 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template import loader
-from register.models import EmailVerification, User
+from .models import EmailVerification, User
 
 # Send email for verification at the time of registration
 def sendVerificationEmail(email):

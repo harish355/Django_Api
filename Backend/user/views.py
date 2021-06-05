@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from datetime import datetime,timedelta
 import pytz
 from register.models import UserProfile,User,EmailVerification,PhoneVerification,HintQuestions
-from login.models import LoginVerification,Sessions
+from login.models import LoginVerification
 from register.helper import generateUUID,generateOtp
 from register.emails import sendVerificationEmail
 from register.phone import sendVerificationMessage
