@@ -10,7 +10,6 @@ def sendVerificationEmail(email):
     user = User.objects.get(email=email)
     email_verification = EmailVerification.objects.get(user=user)
     from_email = settings.EMAIL_HOST_USER
-    # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
         send_mail(
@@ -24,11 +23,10 @@ def sendVerificationEmail(email):
         print("___________________",e)
         print(f"Email (type=verification) couldn't be sent to {email}.")
 
-# Send email on every update made to user profile
+
 def sendUpdateEmail(email):
     user = User.objects.get(email=email)
     from_email = EMAIL_HOST_USER
-    # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
 
@@ -42,10 +40,8 @@ def sendUpdateEmail(email):
     except:
         print(f"Email (type=update) couldn't be sent to {email}.")
 
-# Send email after user account gets deleted successfully
 def sendDestroyEmail(email, username):
     from_email = EMAIL_HOST_USER
-    # to_list = ['shashankkumar.cse.iitb@gmail.com']
     to_list = [email]
     try:
         send_mail(
